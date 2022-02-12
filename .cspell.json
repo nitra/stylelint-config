@@ -1,0 +1,7 @@
+{
+  "version": "0.2",
+  "language": "en,uk,ru-ru",
+  "ignorePaths": ["**/node_modules/**", "**/.git/**", "yarn.lock"],
+  "import": [],
+  "words": []
+}
