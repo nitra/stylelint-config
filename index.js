@@ -6,6 +6,6 @@ module.exports = {
   ],
   plugins: [],
   rules: {
-    "declaration-block-trailing-semicolon": "never",
+    "declaration-block-trailing-semicolon": null,
   },
 };
