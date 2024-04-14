@@ -1,6 +1,6 @@
 {
   "name": "@nitra/stylelint-config",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "A Stylelint shareable config.",
   "repository": {
     "type": "git",
