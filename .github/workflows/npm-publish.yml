@@ -27,4 +27,4 @@ jobs:
       - name: Publish package
         uses: JS-DevTools/npm-publish@v4
         with:
-          package: npm/package.json
+          package: package.json
