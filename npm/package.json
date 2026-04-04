@@ -1,0 +1,25 @@
+{
+  "name": "@nitra/stylelint-config",
+  "version": "1.4.0",
+  "description": "A Stylelint shareable config.",
+  "keywords": [
+    "Stylelint",
+    "nitra"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:nitra/stylelint-config.git"
+  },
+  "files": [
+    "index.js"
+  ],
+  "type": "module",
+  "exports": "./index.js",
+  "dependencies": {
+    "postcss-html": "^1.8.1",
+    "stylelint": "^17.6.0",
+    "stylelint-config-recommended-vue": "^1.6.1",
+    "stylelint-config-standard-scss": "^17.0.0"
+  }
+}

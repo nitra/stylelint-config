@@ -3,12 +3,12 @@
 ## Installation
 
 ```sh
-yarn add @nitra/stylelint-config -D
+bun add -d @nitra/stylelint-config
 ```
 
 ## Usage
 
- .vscode/settings.json:
+.vscode/settings.json:
 
 ```json
 {

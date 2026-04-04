@@ -1,0 +1,3 @@
+{
+  "rules": ["bun", "ga", "js-format", "npm-module", "spell"]
+}

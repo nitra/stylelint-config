@@ -1,0 +1,73 @@
+---
+description: Bun як єдиний package manager у монорепо
+alwaysApply: true
+version: '1.1'
+---
+
+Проект використовує тільки Bun для керування залежностями та запуску скриптів.
+
+**Одноразові CLI (hasura, eslint, vite, cypress тощо):**
+
+- Якщо в проєкті вже використовується **`npx`** (скрипти, CI, Dockerfile) — **залишай `npx`**, не замінюй на `bunx`.
+- Якщо новий виклик CLI додається з нуля і в цьому репозиторії прийнято лише Bun — можна `bunx <tool>`.
+
+Заборонено використовувати як менеджер пакетів / lockfile:
+- `npm install`, `yarn`, `pnpm` (і відповідні lockfile, крім `bun.lock`)
+
+Дозволені команди:
+- `bun i`
+- `bun run <script>`
+- `bun add <pkg>`
+- `bun add -d <pkg>`
+- `bun remove <pkg>`
+- `bunx <tool>`
+- `npx <tool>`
+
+
+- Для встановлення залежностей використовуй `bun i`.
+- Для запуску скриптів використовуй `bun run <script>`.
+- Для додавання залежностей:
+  - `bun add <pkg>`
+  - `bun add -d <pkg>` для devDependencies
+- Для одноразових CLI-команд використовуй `bunx <tool>`.
+
+Заборонено використовувати:
+- `npm`
+- `yarn`
+- `pnpm`
+
+Lockfile у репозиторії: `bun.lock`.
+Не створювати `package-lock.json`, `yarn.lock`, `pnpm-lock.yaml`.
+Видалити якщо вони є. Видалити .yarn та .yarnrc.yml якщо вони є.
+
+Для Bun monorepo:
+- Встановлювати залежності у відповідному пакеті, а не в корені без потреби.
+- Якщо залежність потрібна лише одному пакету, додавати її в директорії цього пакета.
+- У CI та локально запускати скрипти через `bun run`.
+
+Якщо в package.json є поля `packageManager`, то прибрати їх, також прибрати всі директорії та файлидля yarn
+
+Якщо в проекті використовується npx, то не заміняти його на bunx, а використовувати npx.
+Коли зміна відбувається в Dockerfile, то використовувати
+```dockerfile
+FROM oven/bun:alpine AS build-env
+```
+замість образу node
+
+В Github actions bun повинен налаштований так:
+```yaml
+- uses: oven-sh/setup-bun@v2
+
+- name: Cache Bun dependencies
+  uses: actions/cache@v4
+  with:
+    path: |
+      ~/.bun/install/cache
+      node_modules
+    key: ${{ runner.os }}-bun-${{ hashFiles('**/bun.lock') }}
+    restore-keys: |
+      ${{ runner.os }}-bun-
+
+- name: Install dependencies
+  run: bun install --frozen-lockfile
+```
