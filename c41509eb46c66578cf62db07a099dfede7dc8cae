@@ -1,0 +1,56 @@
+.vscode/extensions.json
+  770b7880d0984828 1-3
+.vscode/settings.json
+  770b7880d0984828 1-52
+README.md
+  770b7880d0984828 6
+.github/workflows/npm-publish.yml
+  770b7880d0984828 30
+package.json
+  770b7880d0984828 2,4-5,7-10
+.oxfmtrc.json
+  770b7880d0984828 1-20
+.github/workflows/clean-merged-branch.yml
+  770b7880d0984828 1-25
+.github/workflows/clean-ga-workflows.yml
+  770b7880d0984828 1-19
+.cspell.json
+  770b7880d0984828 3-5
+npm/package.json
+  770b7880d0984828 1-2,4,10-16,19-25
+npm/index.js
+  770b7880d0984828 1-15
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.5",
+  "base_commit_sha": "c41509eb46c66578cf62db07a099dfede7dc8cae",
+  "prompts": {
+    "4bdcf1ec871d63d6": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "86a48c53-cde0-41a8-91d0-da58b15b8dc8",
+        "model": "default"
+      },
+      "human_author": "vitaliytv",
+      "messages": [],
+      "total_additions": 8,
+      "total_deletions": 0,
+      "accepted_lines": 0,
+      "overriden_lines": 0
+    },
+    "770b7880d0984828": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "ae87e923-db7f-4e9d-bd0f-c653ba9b3ef0",
+        "model": "default"
+      },
+      "human_author": "vitaliytv",
+      "messages": [],
+      "total_additions": 185,
+      "total_deletions": 47,
+      "accepted_lines": 163,
+      "overriden_lines": 6
+    }
+  }
+}
