@@ -4,9 +4,20 @@
   "workspaces": [
     "npm"
   ],
+  "type": "module",
+  "scripts": {
+    "lint": "bun run lint-ga && bun run lint-js && bun run lint-text && oxfmt .",
+    "lint-ga": "bunx node-actionlint && uvx zizmor --offline --collect=workflows .",
+    "lint-js": "oxlint --fix && bunx eslint --fix . && bunx jscpd .",
+    "lint-text": "npx cspell . && bunx markdownlint-cli2 --fix \"**/*.md\" \"**/*.mdc\" && bun ./node_modules/@nitra/cursor/scripts/run-v8r.mjs"
+  },
   "devDependencies": {
     "@cspell/dict-uk-ua": "^4.0.6",
     "@nitra/cspell-dict": "^1.0.185",
-    "cspell": "^9.2.0"
+    "@nitra/cursor": "^1.8.9",
+    "@nitra/eslint-config": "^3.4.0"
+  },
+  "engines": {
+    "node": ">=24"
   }
 }

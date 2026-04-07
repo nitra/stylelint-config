@@ -1,7 +1,7 @@
 ---
 description: Bun як єдиний package manager у монорепо
 alwaysApply: true
-version: '1.1'
+version: '1.3'
 ---
 
 Проект використовує тільки Bun для керування залежностями та запуску скриптів.
@@ -12,9 +12,11 @@ version: '1.1'
 - Якщо новий виклик CLI додається з нуля і в цьому репозиторії прийнято лише Bun — можна `bunx <tool>`.
 
 Заборонено використовувати як менеджер пакетів / lockfile:
+
 - `npm install`, `yarn`, `pnpm` (і відповідні lockfile, крім `bun.lock`)
 
 Дозволені команди:
+
 - `bun i`
 - `bun run <script>`
 - `bun add <pkg>`
@@ -22,7 +24,6 @@ version: '1.1'
 - `bun remove <pkg>`
 - `bunx <tool>`
 - `npx <tool>`
-
 
 - Для встановлення залежностей використовуй `bun i`.
 - Для запуску скриптів використовуй `bun run <script>`.
@@ -32,6 +33,7 @@ version: '1.1'
 - Для одноразових CLI-команд використовуй `bunx <tool>`.
 
 Заборонено використовувати:
+
 - `npm`
 - `yarn`
 - `pnpm`
@@ -41,25 +43,33 @@ Lockfile у репозиторії: `bun.lock`.
 Видалити якщо вони є. Видалити .yarn та .yarnrc.yml якщо вони є.
 
 Для Bun monorepo:
+
 - Встановлювати залежності у відповідному пакеті, а не в корені без потреби.
 - Якщо залежність потрібна лише одному пакету, додавати її в директорії цього пакета.
 - У CI та локально запускати скрипти через `bun run`.
 
-Якщо в package.json є поля `packageManager`, то прибрати їх, також прибрати всі директорії та файлидля yarn
+Якщо в package.json є поля `packageManager`, то прибрати їх, також прибрати всі директорії та файли для yarn
 
-Якщо в проекті використовується npx, то не заміняти його на bunx, а використовувати npx.
+Якщо в проекті використовується npx, то не замінювати його на bunx, а використовувати npx.
 Коли зміна відбувається в Dockerfile, то використовувати
+
 ```dockerfile
 FROM oven/bun:alpine AS build-env
 ```
+
 замість образу node
 
 В Github actions bun повинен налаштований так:
+
 ```yaml
+- uses: actions/setup-node@v6
+  with:
+    node-version: '24'
+
 - uses: oven-sh/setup-bun@v2
 
 - name: Cache Bun dependencies
-  uses: actions/cache@v4
+  uses: actions/cache@v5
   with:
     path: |
       ~/.bun/install/cache
@@ -71,3 +81,15 @@ FROM oven/bun:alpine AS build-env
 - name: Install dependencies
   run: bun install --frozen-lockfile
 ```
+
+## Перевірка
+
+`npx @nitra/cursor check bun`
+
+## lint
+
+Якщо в кореневому @package.json  існують скрипти з префіксом `lint-`, обов'язково створюй `lint` скрипт, який буде запускати всі ці скрипти з лінт-префіксом.
+
+У кінці скрипта `lint` додай `&& oxfmt .`.
+
+Якщо в **`.n-cursor.json`** у масиві **`rules`** є **`docker`**, у кореневому `package.json` **обов'язково** скрипт **`lint-docker`** (див. **`docker.mdc`**) і рядок **`bun run lint-docker`** у **`lint`**. Якщо є **`k8s`** — **обов'язково** **`lint-k8s`** і **`bun run lint-k8s`** у **`lint`** (див. **`k8s.mdc`**). Перевірка — **`npx @nitra/cursor check bun`**.

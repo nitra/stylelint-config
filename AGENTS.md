@@ -8,15 +8,23 @@ This file is the entry point for all AI agents working with this repository.
 
 The primary development rules are stored in the Cursor rules directory:
 
-- .cursor/rules/nitra-bun.mdc
+- .cursor/rules/n-bun.mdc
 
-- .cursor/rules/nitra-ga.mdc
+- .cursor/rules/n-ga.mdc
 
-- .cursor/rules/nitra-js-format.mdc
+- .cursor/rules/n-js-format.mdc
 
-- .cursor/rules/nitra-npm-module.mdc
+- .cursor/rules/n-js-lint.mdc
 
-- .cursor/rules/nitra-spell.mdc
+- .cursor/rules/n-npm-module.mdc
+
+- .cursor/rules/n-text.mdc
+
+## Skills
+
+- `.cursor/skills/n-fix/SKILL.md` — Виправити проєкт відповідно до всіх правил в .cursor/rules/
+
+- `.cursor/skills/n-publish-telegram/SKILL.md` — Підготовка матеріалу з поточного контексту для публікації в Telegram-каналі команди
 
 ## Instructions for all agents
 

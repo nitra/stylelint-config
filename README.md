@@ -12,9 +12,6 @@ bun add -d @nitra/stylelint-config
 
 ```json
 {
-  "stylelint.validate": [
-      ...,
-      // ↓ Add "vue" language.
-      "vue"
-  ]
+  "stylelint.validate": ["css", "scss", "less", "postcss", "vue"]
+}
 ```
